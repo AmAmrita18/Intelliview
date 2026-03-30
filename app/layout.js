@@ -1,5 +1,6 @@
 import { DM_Sans, Lora } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -21,11 +22,19 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`${lora.variable} ${dmSans.variable} font-sans`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${lora.variable} ${dmSans.variable} font-sans`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {/* Header */}
+          <main className="min-h-screen">{children}</main>
+          {/* Footer  */}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
