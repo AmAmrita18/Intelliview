@@ -24,7 +24,7 @@ const Header = () => {
       <div className="flex items-center gap-3">
         <Show when="signed-out">
             {/* Links  */}
-            
+
             {/* Credits  */}
 
           <SignInButton>
