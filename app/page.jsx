@@ -1,9 +1,16 @@
 import { CodeDemo } from "@/components/demo-components-animate-code";
 import { StarsBackgroundDemo } from "@/components/demo-components-backgrounds-stars";
-import { GoldTitle, GrayTitle, SectionHeading, SectionLabel } from "@/components/reusables";
+import PricingSection from "@/components/PricingSection";
+import {
+  GoldTitle,
+  GrayTitle,
+  SectionHeading,
+  SectionLabel,
+} from "@/components/reusables";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { AI_TAGS, AVATARS, LOGOS, ROLES, SLOTS } from "@/lib/data";
+import { PricingTable } from "@clerk/nextjs";
 import { Bot, Wallet } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -133,7 +140,7 @@ export default function Home() {
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-24 px-6">
-          {LOGOS.map(l=>{
+          {LOGOS.map((l) => {
             <Image
               key={l.alt}
               src={l.src}
@@ -141,22 +148,22 @@ export default function Home() {
               height={50}
               width={50}
               className="h-6 w-auto opacity-60 grayscale"
-            />
+            />;
           })}
         </div>
       </section>
 
       <section className="relative z-10 py-28 max-w-5xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <SectionLabel>Features</SectionLabel>
+        <div className="text-center mb-16">
+          <SectionLabel>Features</SectionLabel>
 
-            <SectionHeading
-              gray="Everything you need,"
-              gold="nothing you don't"
-            />
-          </div>
+          <SectionHeading
+            gray="Everything you need,"
+            gold="nothing you don't"
+          />
+        </div>
 
-                  <div className="grid grid-cols-12 gap-4">
+        <div className="grid grid-cols-12 gap-4">
           <div className="col-span-12 md:col-span-7">
             <BentoCard
               icon={<Bot size={20} className="text-amber-400" />}
@@ -252,7 +259,7 @@ export default function Home() {
         </div>
       </section>
 
-            {/* ROLES */}
+      {/* ROLES */}
       <section className="relative z-10 pb-28 max-w-5xl mx-auto px-6">
         <div className="text-center mb-16">
           <SectionLabel>Who it&apos;s for</SectionLabel>
@@ -291,6 +298,53 @@ export default function Home() {
               </ul>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section className="relative z-10 pb-28 max-w-5xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <SectionLabel>Pricing</SectionLabel>
+          <SectionHeading
+            gray="Simple, transparent"
+            gold="credit-based plans"
+          />
+          <p className="text-stone-400 mt-3 text-sm">
+            Each credit = one session. Unused credits roll over.
+          </p>
+        </div>
+        {/* <PricingTable /> */}
+        <PricingSection />
+      </section>
+
+      {/* CTA */}
+      <section className="relative z-10 pb-28 max-w-5xl mx-auto px-6">
+        <div className="relative border border-amber-400/20 rounded-3xl px-3 sm:px-16 py-20 bg-linear-to-br from-amber-400/5 text-center overflow-hidden">
+          <StarsBackgroundDemo />
+
+          <h2 className="font-serif relative text-4xl md:text-5xl leading-tight tracking-tight mb-4">
+            <GrayTitle>Your next interview</GrayTitle>
+            <br />
+            <GoldTitle>starts here</GoldTitle>
+          </h2>
+
+          <p className="relative text-stone-400 font-light text-sm mb-11">
+            Join thousands of engineers already levelling up on Prept.
+          </p>
+
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Link href="/onboarding" className="relative">
+              <Button variant="gold" size="hero">
+                Get started
+              </Button>
+            </Link>
+
+            <Link href="/explore" className="relative">
+              <Button variant="outline" size="hero">
+                Browse Interviewers →
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
     </div>
