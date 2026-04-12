@@ -3,8 +3,10 @@ import React from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { checkUser } from "@/lib/checkUser";
 
-const Header = () => {
+const Header = async () => {
+  const user = await checkUser();
   return (
     <nav className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-10 py-3 border-b border-white backdrop-blur-xl">
       {/* Logo  */}
@@ -23,9 +25,9 @@ const Header = () => {
       {/* Sign In  */}
       <div className="flex items-center gap-3">
         <Show when="signed-out">
-            {/* Links  */}
+          {/* Links  */}
 
-            {/* Credits  */}
+          {/* Credits  */}
 
           <SignInButton>
             <Button variant="ghost">Sign In</Button>
