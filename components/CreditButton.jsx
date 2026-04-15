@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Coins } from "lucide-react";
 import { Button } from "./ui/button";
+import UpgradeModal from "./UpgradeModal";
 
 export default function CreditButton({ role, credits }) {
   const [open, setOpen] = useState(false);
@@ -27,6 +28,8 @@ export default function CreditButton({ role, credits }) {
           {credits} {role === "INTERVIEWER" ? "Earned" : "Credits"}
         </span>
       </Button>
+
+      <UpgradeModal open={open} onOpenChange={setOpen} />
     </>
   );
 }
